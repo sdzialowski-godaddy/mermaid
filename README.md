@@ -11,13 +11,15 @@
 - https://www.gliffy.com/
 - https://news.ycombinator.com/item?id=18788244
 
-```
+~~~
+```mermaid
   graph TD;
       A-->B;
       A-->C;
       B-->D;
       C-->D;
 ```
+~~~
 
 ```mermaid
   graph TD;
@@ -28,18 +30,7 @@
 ```
 
 
-```
-  graph TD;
-      A-->B;
-      A-->C;
-      B-->Z
-      Z-->W
-      Z-->X
-      W-->X
-      B-->D;
-      C-->D;
-```
-
+~~~
 ```mermaid
   graph TD;
       A-->B;
@@ -51,15 +42,30 @@
       B-->D;
       C-->D;
 ```
+~~~
 
-
+```mermaid
+  graph TD;
+      A-->B;
+      A-->C;
+      B-->Z
+      Z-->W
+      Z-->X
+      W-->X
+      B-->D;
+      C-->D;
 ```
+
+
+~~~
+```mermaid
 flowchart LR
 A[Hard] -->|Text| B(Round)
 B --> C{Decision}
 C -->|One| D[Result 1]
 C -->|Two| E[fa:fa-car Result 2]
 ```
+~~~
 
 ```mermaid
 flowchart LR
@@ -74,7 +80,8 @@ C -->|Two| E[fa:fa-car Result 2]
 
 [https://mermaid-js.github.io/](https://mermaid-js.github.io/mermaid-live-editor/edit/#pako:eNqtk02P2jAQhv_KKAjRSiQcqCrVFVQFVt22u6rU7Q04mHhCXBw7sifNrhL-e20SYJF6rE_j8TMffsduotQIjFg0HDZSS2LQwEiZ_QP-QTViMBK4q_ajMYwoxwKDJzMWHY3gCMfhcKP3lpc5_FptNPj1-c36ibil7VuI43nLrTU15MhFC4t1aU2KzsHCPG87fOGpuDUlalBSH1pYNkLywmgBAlPppNFQGqnp2PHLwIfEyug92j5otaZcuu0FSZLkighDhKInf3SMq3Zd2xeDpCLsDsMS0mJKofrDz6t3ebrTroU7X5DTljHmTIGp4s51FGpxbRTSnHtN9T6EwffgMdnJfgh26Midto_XmHlb-8xefNvCffNPDe79BeP25lpfLtLuvLQBeoXOX7NQS8r7gXy9ieoiVjCbzeat1zM99Mm_dSfDYdgjpKYoUFPnTFXgFpBbzGAT5UQlm0zquk60uV2Jj5tsol5_elHowzKpFBtkH7KxI2sOyAbT6bS341oKytm78vk6AN9DZk3BIBRyvlKBtuBSxL9dsvcXq3aJNGfnZDDJlKn9ECx9kmIWivphxDzW_smf-_ejW_neL3O89PT-43-qmzoXn1Kji8ZRD_kf14T8m-j0rzYR86bAjFeKgkpHj1al8E_hTkgyNmIZVw7HEa_IPL3oNGJkKzxDK8n9Oy566vgXzU0_jw)
 
-```
+~~~
+```mermaid
 %%{init: { 'logLevel': 'debug', 'theme': 'forest' } }%%
 graph TD
     A([Start]) -->|arrow head| B[process Box]
@@ -97,6 +104,7 @@ graph TD
     classDef link color:#00f;
         %% from: https://mermaid-js.github.io/mermaid/#/flowchart?id=css-classes
 ```
+~~~
 
 ```mermaid
 %%{init: { 'logLevel': 'debug', 'theme': 'forest' } }%%
