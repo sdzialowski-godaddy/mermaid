@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "watch": "node node_modules/.bin/nodemon process.js -w README-template.md",
+    "push": "git add . && git commit -m \"marmaid auto update\" && git push"
+  }
+}
