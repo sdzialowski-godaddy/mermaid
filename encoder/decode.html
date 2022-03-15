@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      table {
+        width: 95%;
+      }
+      table > tbody > tr > td:first-child {
+          width: 50%;
+      }
+      table > tbody > tr > td {
+          vertical-align: top;
+      }
+      textarea {
+        width: 100%;
+        min-height: 300px;
+      }
+      pre {
+        white-space: break-spaces;
+      }
+    </style>
+  </head>
+  <body>
+    <h5>decode pako</h5>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <textarea>
+eNqtVE2PmzAQ_SsjoohWDaB2q0p1E1ZNsurXVpW6vSU5GDyAu2BT25Rdhfz32kA-Vuqhh_o0Hr_3mDdjvPdSydAj3lZMp3suuCGwB7-U-S3-xtIn4DNMmtyfgW8KrNBlMqlQGx8OcJhOtyJXtC7gx3orwK73zzZ3hiqzew5BEHdUKdlCgZR1sNzUSqaoNSzlw26ALy0q6GSNAkou7jtY7RmnlRQM5knMMOWaSzGPkhhqyYU5DLSVozn9yUsopchRjfT1xhRc706oMAwtaoQwaQyyEfltwOgmGQycAsNLg8OhW4wrTI0tAm6_n7Or3l3Swc3GlmAKanaEEKc8YFCwc6WQFtT2VuSOBF9cRmZ9fOtix9L99uuZE3etFbVDUDCnUCjMFn5hTE2iKJcyLzFMZeXHjjuPaNzBx_3kFRwb9qRZH20bgs6dXvr_cJpGcppGj4y7Cxy03BTj_D79hbGGxWIRd7bp6f0o_Hk4mU7dHsGWWaEwQzItHW7V-4Gt5wxp66ht2_DsKtJIVVpc_1pkpWxf2OYps_UuBW7-VaBi4ilzeckciUI-Xb3EkabNY4mWlvGyJJPsbTbTRsl7JJOrq6sxDlrOTEFe1w_nC2LtZ0pWBI4lVqgqylnwU4e57WmThFwek9EkclZ7p9ecLdxH7XUJaCDs73msn2q9trVrWWG_OdX05t1_-m6qddBLo_Zm3giyr8Pe6W-9_gXYesSGDDPalP1YDhba1Mxe1hvGjVQeyWipcebRxsi7R5F6xKgGj6A1p_Y_q0bU4Q88_HfN</textarea
+            >
+          </td>
+          <td>
+            <pre></pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <script src="https://cdn.jsdelivr.net/npm/js-base64@3.7.2/base64.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
+    <script>
+      {
+        const pako = (function () {
+          const node =
+            typeof global !== "undefined" && Object.prototype.toString.call(global.process) === "[object process]";
+
+          const err = (msg) => `pako internal error: ${msg}`;
+
+          const th = (msg) => new Error(err(msg));
+
+          const pako = (function () {
+            let tmp;
+            try {
+              if (node) {
+                tmp = require("pako");
+              } else {
+                tmp = window.pako;
+              }
+            } catch (e) {
+              throw th(`loading pako failed: ${e}`);
+            }
+            if (typeof tmp === "undefined") {
+              throw th(`preparing pako failed: main lib is undefined`);
+            }
+            if (typeof tmp.deflate !== "function") {
+              throw th(`preparing pako failed: deflate lib is not a function`);
+            }
+            if (typeof tmp.inflate !== "function") {
+              throw th(`preparing pako failed: inflate lib is not a function`);
+            }
+            return tmp;
+          })();
+
+          const base64 = (function () {
+            let tmp;
+            try {
+              if (node) {
+                tmp = require("js-base64");
+              } else {
+                tmp = window.Base64;
+              }
+            } catch (e) {
+              throw th(`loading base64 failed: ${e}`);
+            }
+            if (typeof tmp === "undefined") {
+              throw th(`preparing base64 failed: main lib is undefined`);
+            }
+            if (typeof tmp.fromUint8Array !== "function") {
+              throw th(`preparing base64 failed: fromUint8Array lib is not a function`);
+            }
+            if (typeof tmp.fromUint8Array !== "function") {
+              throw th(`preparing base64 failed: fromUint8Array lib is not a function`);
+            }
+            return tmp;
+          })();
+
+          return {
+            encode: function (state) {
+              state = JSON.stringify(state);
+              const data = new TextEncoder().encode(state);
+              const compressed = pako.deflate(data, { level: 9 });
+              return base64.fromUint8Array(compressed, true);
+            },
+            decode: function (state) {
+              const data = base64.toUint8Array(state);
+              return JSON.parse(pako.inflate(data, { to: "string" }));
+            },
+          };
+        })();
+
+        const log = (function () {
+          try {
+            return console.log;
+          } catch (e) {
+            return () => {};
+          }
+        })();
+        const textarea = document.querySelector("textarea");
+
+        const pre = document.querySelector("pre");
+
+        function trigger() {
+          let tmp;
+          try {
+            tmp = pako.decode(textarea.value);
+            log("tmp", tmp);
+          } catch (e) {
+            tmp = {
+              message: e.message,
+              stack: e.stack.split("\n"),
+            };
+          }
+
+          pre.innerText = JSON.stringify(tmp, null, 4);
+        }
+
+        trigger();
+
+        textarea.addEventListener("input", trigger);
+      }
+    </script>
+  </body>
+</html>
