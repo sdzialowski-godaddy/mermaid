@@ -8,7 +8,7 @@ https://greasyfork.org/en/scripts/441574-github-mermaid
 
 # Features
 
-## Permalink on the same page
+## * Permalink on the same page
 
 It is possible to prefix any label on the chart with "hash" and "number" (example "#2").
 
@@ -24,17 +24,13 @@ Example:
       C-->D;
 ```
 
-## #10 header to scroll
-
-Here is content under header to which user will be scrolled once he click process box with title "#10 b title" on above flow chart.
-
-## Coloring links
+## * Coloring links
 
 By default when [hyperlink](https://mermaid-js.github.io/mermaid/#/flowchart?id=interaction) is defined on the chart it's not really clear that it's a link. It lack styling typical for hyperlinks (blue color), it is only visible that it's a link once one hover over it, mouse cursor will change to state "pointer"
 
 This script changes that to make links visible as regular blue links.
 
-## Generating links to live editor
+## * Generating links to live editor
 
 This script also generates special link on each chart which once clicked opens new tab in the browser with this chart in [live editor](https://mermaid-js.github.io/mermaid-live-editor)
 
@@ -111,6 +107,10 @@ graph TD
     classDef someclass fill:#f96;
         %% from: https://mermaid-js.github.io/mermaid/#/flowchart?id=css-classes
 ```
+
+## #10 header to scroll
+
+Here is content under header to which user will be scrolled once he click process box with title "#10 b title" on above flow chart.
 
 ###### #1 longer link
 
