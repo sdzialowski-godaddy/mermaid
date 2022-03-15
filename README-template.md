@@ -52,18 +52,20 @@ graph TD
     C -...->|longer dotted link| O
     subgraph subgraph tilte
         direction LR
-        C -->|b| E[that]:::link
+        C -->|b| E[#1 that]:::link
     end
     C -- chaining --> K -- of --> L -- links --> M
-    C -->|whatever <a href='http://google.com'>link</a>| H{decision point}
-    H -.-|#2dotted link| G[process box]
+    C -->|whatever <a href='http://google.com'>link</a>| H{#2 decision point}
+    H -.-|#2 dotted link| G[process box]
     H -.->|dotted link with head| I[process box]
     D ===>|thick link| J
     %% line comment
+    click C href "https://www.google.com/search?q=flow+chart"
+    click E href "https://www.google.com/search?q=mdn"
     click B href "http://www.nooooooooooooooo.com/"
     style B fill:#f9f,stroke:#333,stroke-width:4px
         %% from: https://mermaid-js.github.io/mermaid/#/flowchart?id=styling-a-node
-    classDef link color:#00f;
+    classDef someclass fill:#f96;
         %% from: https://mermaid-js.github.io/mermaid/#/flowchart?id=css-classes
 ```
 
