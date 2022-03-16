@@ -129,7 +129,17 @@ eNqtVE2PmzAQ_SsjoohWDaB2q0p1E1ZNsurXVpW6vSU5GDyAu2BT25Rdhfz32kA-Vuqhh_o0Hr_3mDdj
         function trigger() {
           let tmp;
           try {
-            tmp = pako.decode(textarea.value);
+
+            let value = textarea.value;
+
+            const match = value.match(/^.*?\/#pako:(.*)$/);
+
+            if (match && match.length === 2) {
+
+              value = match[1];
+            }
+
+            tmp = pako.decode(value);
             log("tmp", tmp);
           } catch (e) {
             tmp = {
