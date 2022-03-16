@@ -4,6 +4,12 @@ Stript was create to improve navigation on the github page rendering mermaid con
 
 # Installation
 
+Install Tampermonkey
+- [chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo/related)
+- [firefox](https://addons.mozilla.org/en-GB/firefox/addon/tampermonkey/)
+
+then install this script
+
 https://greasyfork.org/en/scripts/441574-github-mermaid
 
 # Features
