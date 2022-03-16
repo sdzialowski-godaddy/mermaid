@@ -26,7 +26,7 @@ Example:
 
 ```mermaid
   graph TD;
-      A-->B[#10 b title];
+      A-->B[#10 b title click];
       A-->C;
       B-->D;
       C-->D;
