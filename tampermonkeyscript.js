@@ -528,7 +528,9 @@ a.clickable a {
         function (e) {
           try {
             if (e.origin !== origin) {
-              throw new Error(`Origin of message from iframe should be '${origin}', but it is '${e.origin}'`);
+              return;
+
+              // throw new Error(`Origin of message from iframe should be '${origin}', but it is '${e.origin}'`);
             }
 
             if (/^https?:\/\//.test(e.data.permalink)) {
@@ -537,7 +539,7 @@ a.clickable a {
               return;
             }
 
-            const selector = `a[href^="${e.data.permalink}"].anchor`;
+            const selector = `a[href^="${e.data.permalink}-"].anchor`;
 
             log(`attempt to scroll to: (graph:${e.data.permalink}) corresponding on the parent page '${selector}'`);
 
