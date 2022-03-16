@@ -20,13 +20,13 @@ https://greasyfork.org/en/scripts/441574-github-mermaid
 
 It is possible to prefix any label on the chart with "hash" and "number" (example "#2").
 
-This part of label will be changed into red link with permalink which once clicked will scroll to header on the same page where that header also starts with the same "hash" and "number" (In case of above example it header will have to start from exactly with "#2")
+This part of label will be transformed into a red link with permalink which once clicked will scroll to header on the same page where that header also starts with the same "hash" and "number" (In case of above example it header will have to start from exactly with "#2")
 
 Example:
 
 ```mermaid
   graph TD;
-      A-->B[#10 b title];
+      A-->B[#10 b title *click me*];
       A-->C;
       B-->D;
       C-->D;
