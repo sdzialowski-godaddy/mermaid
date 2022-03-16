@@ -21,6 +21,8 @@
 // https://cdnjs.com/libraries/pako
 // <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
 
+// iframe communication both way: https://htmldom.dev/communication-between-an-iframe-and-its-parent-window/
+
 const scriptname = "GITHUB mermaid";
 
 const log = (function (log) {
@@ -34,6 +36,13 @@ const log = (function (log) {
     }
   })()
 );
+
+function getHash(href) {
+  href = String(href);
+  return href.replace(/^.*?#(.*)$/, "$1");
+}
+
+const hash = getHash(location.href);
 
 /**
  * Minified by jsDelivr using Terser v5.7.1.
@@ -117,11 +126,9 @@ const log = (function (log) {
         const data = base64.toUint8Array(state);
         return JSON.parse(pako.inflate(data, { to: "string" }));
       },
-      craeteLink: function () {
-        const markdown = window.txt;
-
+      craeteLink: function (code) {
         const packed = this.encode({
-          code: markdown,
+          code: code,
           mermaid: '{\n  "theme": "default"\n}',
           updateEditor: false,
           autoSync: true,
@@ -324,9 +331,19 @@ const log = (function (log) {
     };
   })();
 
-  const iframes = document.querySelectorAll("iframe");
-
-  log("iframes count:", iframes.length);
+  const iframes = Array.from(document.querySelectorAll("iframe")).map((iframe) => {
+    return {
+      iframe,
+      hash: getHash(iframe.getAttribute("src")),
+      code: (function () {
+        try {
+          return JSON.parse(iframe.getAttribute("data-content")).data.replace(/&gt;/g, ">").replace(/&lt;/g, "<");
+        } catch (e) {
+          log("iframe", iframe.getAttribute("src"), "error: ", e);
+        }
+      })(),
+    };
+  });
 
   function box(content, opt) {
     if (!opt) {
@@ -392,6 +409,10 @@ const log = (function (log) {
     const isInsideMermaidIframe = svg.parentNode.classList.contains("mermaid");
 
     if (isInsideMermaidIframe) {
+      // window.addEventListener("message", function (e) {
+      //   log("in iframe received", e);
+      // });
+
       addCss(`
 a {
   color: white;
@@ -416,22 +437,13 @@ a.clickable a {
         }
       });
 
-      function emit(e, permalink, ekstra) {
+      function emit(e, data) {
         e.preventDefault();
         e.stopPropagation();
 
-        log("emmit top.postMessage", {
-          permalink,
-        }, {
-          ekstra,
-        });
+        // log("emmit top.postMessage", data);
 
-        window.top.postMessage(
-          {
-            permalink,
-          },
-          "*"
-        );
+        window.top.postMessage(data, "*");
       }
 
       const buff = [];
@@ -471,12 +483,20 @@ a.clickable a {
 
             manipulation.prepend(el, a);
 
-            a.addEventListener("click", (e) => emit(e, permalink));
+            a.addEventListener("click", (e) =>
+              emit(e, {
+                permalink,
+              })
+            );
 
             manipulation.txt(el, null, m[2] + m[3]);
           } else {
             Array.from(el.querySelectorAll("a")).forEach((a) => {
-              a.addEventListener("click", (e) => emit(e, a.getAttribute("href")));
+              a.addEventListener("click", (e) =>
+                emit(e, {
+                  permalink: a.getAttribute("href"),
+                })
+              );
             });
           }
         }
@@ -500,7 +520,9 @@ a.clickable a {
         fn: (div) => {
           log("click", div);
           div.addEventListener("click", (e) => {
-            emit(e, pako.craeteLink(), window.txt);
+            emit(e, {
+              liveeditor: hash,
+            });
           });
         },
       });
@@ -529,10 +551,21 @@ a.clickable a {
         "message",
         function (e) {
           try {
+            log("message", e.data);
             if (e.origin !== origin) {
-              return;
+              //return;
 
-              // throw new Error(`Origin of message from iframe should be '${origin}', but it is '${e.origin}'`);
+              throw new Error(`Origin of message from iframe should be '${origin}', but it is '${e.origin}'`);
+            }
+
+            if (e.data.liveeditor) {
+              const found = iframes.find((f) => f.hash === e.data.liveeditor);
+
+              if (found) {
+                window.open(pako.craeteLink(found.code), "_blank").focus();
+              }
+
+              return;
             }
 
             if (/^https?:\/\//.test(e.data.permalink)) {
