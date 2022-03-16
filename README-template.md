@@ -12,7 +12,7 @@ then install this script
 
 https://greasyfork.org/en/scripts/441574-github-mermaid
 
-... then reload this github page to see it in action agains mermaid markdown
+... then reload this github page to see it in action against mermaid markdown
 
 # Features
 
