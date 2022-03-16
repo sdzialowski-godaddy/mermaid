@@ -42,6 +42,8 @@ This script changes that to make links visible as regular blue links.
 
 This script also generates special link on each chart which once clicked opens new tab in the browser with this chart in [live editor](https://mermaid-js.github.io/mermaid-live-editor)
 
+Here is online url [decoder](https://stopsopa.github.io/mermaid/)
+
 # More materials about mermaid itself
 
 - [Mermaid github homepage](https://github.com/mermaid-js/mermaid#readme)
@@ -85,6 +87,8 @@ B --> C{Decision}
 C -->|One| D[Result 1]
 C -->|Two| E[fa:fa-car Result 2]
 ```
+
+
 
 # advanced
 

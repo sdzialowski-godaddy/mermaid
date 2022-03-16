@@ -416,12 +416,14 @@ a.clickable a {
         }
       });
 
-      function emit(e, permalink) {
+      function emit(e, permalink, ekstra) {
         e.preventDefault();
         e.stopPropagation();
 
         log("emmit top.postMessage", {
           permalink,
+        }, {
+          ekstra,
         });
 
         window.top.postMessage(
@@ -498,7 +500,7 @@ a.clickable a {
         fn: (div) => {
           log("click", div);
           div.addEventListener("click", (e) => {
-            emit(e, pako.craeteLink());
+            emit(e, pako.craeteLink(), window.txt);
           });
         },
       });
