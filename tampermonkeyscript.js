@@ -61,6 +61,8 @@ const hash = getHash(location.href);
 (function () {
   "use strict";
 
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+
   function pakoFactory() {
     const node = typeof global !== "undefined" && Object.prototype.toString.call(global.process) === "[object process]";
 
@@ -549,7 +551,7 @@ a.clickable a {
 
       window.addEventListener(
         "message",
-        function (e) {
+        async function (e) {
           try {
             log("message", e.data);
             if (e.origin !== origin) {
@@ -587,6 +589,13 @@ a.clickable a {
                 log(
                   `scrolling to: (graph:${e.data.permalink}) corresponding on the parent page '${selector}', <a id='#${id}'/>`
                 );
+
+                // closing full screen view for diagram (if opened)
+                Array.from(document.querySelectorAll("details.details-reset")).forEach((e) =>
+                  e.removeAttribute("open")
+                );
+
+                await delay(50);
 
                 location.href = `#${id}`;
 
