@@ -126,6 +126,8 @@ sequenceDiagram
     participant J as John
     participant B as Bob
     link Alice: Dashboard @ https://dashboard.contoso.com/alice
+Note over A,B: Entity codes to escape characters #35;-#35;35#59; #38;-#35;38#59;
+
 A->>J: Hello John, how are you?
 loop Healthcheck
     J->>J: Fight against hypochondria
@@ -144,7 +146,7 @@ deactivate J
 A->>J: Solid line with arrowhead
 A-->>J: Dotted line with arrowhead
 deactivate J
-A-xJ: Solid line with a cross at the 
+A-xJ: Solid line with a cross at the
 A--xJ: Dotted line with a cross at the end.
 Note over J,A: A typical interaction
 A-)J: Solid line with an open arrow at the end (async)
@@ -167,17 +169,14 @@ Note over A,B: Alt
   end
 
 rect rgb(191, 223, 255, 0.4)
-Note over A,B: Parallel and Background Highlighting
+Note over A,B: Parallel #38; Background Highlighting
     par John to Bob
         J->>B: Hello guys!
     and John to Alice
         J->>A: Hello guys!
     end
 end
-
-
 ```
-
 
 ###### #10 header to scroll
 
