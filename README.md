@@ -201,14 +201,14 @@ graph TD
 sequenceDiagram
     autonumber
     actor A as #35;1 Alice
-    participant J as John
+    participant J as #35;10 John
     participant B as Bob
     link Alice: Dashboard @ https://dashboard.contoso.com/alice
-Note over A,B: Entity codes to escape characters #35;-#35;35#59; #38;-#35;38#59;
+Note over A,B: #35;2 Entity codes to escape characters #35;-#35;35#59; #38;-#35;38#59;
 
 A->>J: Hello John, how are you?
-loop Healthcheck
-    J->>J: Fight against hypochondria
+loop #35;1 Healthcheck
+    J->>J: #35;2 Fight against hypochondria
 end
 Note right of J: Rational thoughts!
 J-->>A: Great!
@@ -254,6 +254,7 @@ Note over A,B: Parallel #38; Background Highlighting
         J->>A: Hello guys!
     end
 end
+
 ```
 ~~~
 
@@ -261,14 +262,14 @@ end
 sequenceDiagram
     autonumber
     actor A as #35;1 Alice
-    participant J as John
+    participant J as #35;10 John
     participant B as Bob
     link Alice: Dashboard @ https://dashboard.contoso.com/alice
-Note over A,B: Entity codes to escape characters #35;-#35;35#59; #38;-#35;38#59;
+Note over A,B: #35;2 Entity codes to escape characters #35;-#35;35#59; #38;-#35;38#59;
 
 A->>J: Hello John, how are you?
-loop Healthcheck
-    J->>J: Fight against hypochondria
+loop #35;1 Healthcheck
+    J->>J: #35;2 Fight against hypochondria
 end
 Note right of J: Rational thoughts!
 J-->>A: Great!
@@ -314,6 +315,7 @@ Note over A,B: Parallel #38; Background Highlighting
         J->>A: Hello guys!
     end
 end
+
 ```
 
 

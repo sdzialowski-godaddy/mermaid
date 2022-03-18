@@ -61,6 +61,10 @@ const hash = getHash(location.href);
 (function () {
   "use strict";
 
+  const xmlns = "http://www.w3.org/2000/svg";
+
+  const xlink = "http://www.w3.org/1999/xlink";
+
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   function pakoFactory() {
@@ -238,6 +242,9 @@ const hash = getHash(location.href);
         return Object.prototype.toString.call(obj) === "[object NodeList]";
       },
       isNode: isNode,
+      isSvgElement: (e) => {
+        return e instanceof SVGElement;
+      },
       children: function (parentNode) {
         try {
           // read also about
@@ -430,10 +437,32 @@ a.clickable * {
 a.clickable a {
   color: white;
 }
+tspan {
+
+  filter: 
+    drop-shadow(-1px -1px 0px blue) 
+    drop-shadow(2px -1px 0px blue) 
+    drop-shadow(2px 2px 0px blue)
+    drop-shadow(-1px 2px 0px blue)
+}
+tspan a {
+
+  filter: 
+    drop-shadow(-1px -1px 0px red) 
+    drop-shadow(2px -1px 0px red) 
+    drop-shadow(2px 2px 0px red)
+    drop-shadow(-1px 2px 0px red)
+}
   `);
       const labelsOnLines = Array.from(document.querySelectorAll("foreignObject .edgeLabel"));
 
       Array.from(document.querySelectorAll("foreignObject > div")).forEach((e) => {
+        if (!labelsOnLines.find((x) => x === e)) {
+          labelsOnLines.push(e);
+        }
+      });
+
+      Array.from(document.querySelectorAll("tspan")).forEach((e) => {
         if (!labelsOnLines.find((x) => x === e)) {
           labelsOnLines.push(e);
         }
@@ -478,10 +507,21 @@ a.clickable a {
           if (m) {
             buff.push(Object.assign({}, m));
 
-            const a = document.createElement("a");
-            a.setAttribute("href", "javascript:void(0)");
+            const isIvg = manipulation.isSvgElement(el);
+
             const permalink = String(m[1]);
-            a.innerText = permalink;
+
+            let a;
+            if (isIvg) {
+              //https://stackoverflow.com/a/38409875
+              a = document.createElementNS(xmlns, "a");
+              a.setAttributeNS(xlink, "xlink:href", "javascript:void(0)");
+              a.appendChild(document.createTextNode(permalink));
+            } else {
+              a = document.createElement("a");
+              a.setAttribute("href", "javascript:void(0)");
+              a.innerText = `link: ${isIvg ? "true" : "false"}` + permalink;
+            }
 
             manipulation.prepend(el, a);
 
