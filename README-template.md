@@ -172,12 +172,10 @@ rect rgb(191, 223, 255, 0.4)
 Note over A,B: Parallel #38; Background Highlighting
     par John to Bob
         J->>B: Hello guys!
-    and John to Alice
+    and #35;2 John to Alice
         J->>A: Hello guys!
     end
 end
-
-
 ```
 
 ###### #10 header to scroll
