@@ -213,7 +213,7 @@ end
 Note right of J: Rational thoughts!
 J-->>A: Great!
 A->>J: #9829;
-J->>B: How about you?
+J->>B: #35;10 How about you?
 B-->>J: Jolly good!
 %% this is a comment
 activate J
@@ -222,7 +222,7 @@ A->J: Solid line without arrow
 A-->J: Dotted line without arrow
 deactivate J
 A->>J: Solid line with arrowhead
-A-->>J: Dotted line with arrowhead
+A-->>J: #35;1 Dotted line with arrowhead
 deactivate J
 A-xJ: Solid line with a cross at the
 A--xJ: Dotted line with a cross at the end.
@@ -254,6 +254,7 @@ Note over A,B: Parallel #38; Background Highlighting
         J->>A: Hello guys!
     end
 end
+
 
 ```
 ~~~
@@ -274,7 +275,7 @@ end
 Note right of J: Rational thoughts!
 J-->>A: Great!
 A->>J: #9829;
-J->>B: How about you?
+J->>B: #35;10 How about you?
 B-->>J: Jolly good!
 %% this is a comment
 activate J
@@ -283,7 +284,7 @@ A->J: Solid line without arrow
 A-->J: Dotted line without arrow
 deactivate J
 A->>J: Solid line with arrowhead
-A-->>J: Dotted line with arrowhead
+A-->>J: #35;1 Dotted line with arrowhead
 deactivate J
 A-xJ: Solid line with a cross at the
 A--xJ: Dotted line with a cross at the end.
@@ -315,6 +316,7 @@ Note over A,B: Parallel #38; Background Highlighting
         J->>A: Hello guys!
     end
 end
+
 
 ```
 

@@ -445,8 +445,12 @@ tspan {
     drop-shadow(2px 2px 0px blue)
     drop-shadow(-1px 2px 0px blue)
 }
-tspan a {
-
+a.mermaidlink {
+  color: white;
+  background-color: #ce3c3c;
+  padding-right: 1px;
+  padding-left: 1px;
+  margin-left: 2px;
   filter: 
     drop-shadow(-1px -1px 0px red) 
     drop-shadow(2px -1px 0px red) 
@@ -468,6 +472,12 @@ tspan a {
         }
       });
 
+      Array.from(document.querySelectorAll('text.messageText')).forEach((e) => {
+        if (!labelsOnLines.find((x) => x === e)) {
+          labelsOnLines.push(e);
+        }
+      });
+
       function emit(e, data) {
         e.preventDefault();
         e.stopPropagation();
@@ -483,7 +493,7 @@ tspan a {
         const t = manipulation.txt(el);
 
         if (typeof t.at === "string") {
-          const m = t.at.match(/^\s*(#\d+)\s*([^\d])(.*)$/);
+          const m = t.at.match(/^\s*(\[?)(#\d+)\s*([^\d])(.*)$/);
 
           // [
           //   {
@@ -509,17 +519,21 @@ tspan a {
 
             const isIvg = manipulation.isSvgElement(el);
 
-            const permalink = String(m[1]);
+            const permalink = String(m[1]+m[2]);
 
             let a;
             if (isIvg) {
               //https://stackoverflow.com/a/38409875
               a = document.createElementNS(xmlns, "a");
               a.setAttributeNS(xlink, "xlink:href", "javascript:void(0)");
+              // a.setAttributeNS(xlink, "class", "mermaidlink");
+              a.classList.add('mermaidlink')
               a.appendChild(document.createTextNode(permalink));
             } else {
               a = document.createElement("a");
               a.setAttribute("href", "javascript:void(0)");
+              // a.setAttribute("class", "mermaidlink");
+              a.classList.add('mermaidlink')
               a.innerText = `link: ${isIvg ? "true" : "false"}` + permalink;
             }
 
@@ -531,7 +545,7 @@ tspan a {
               })
             );
 
-            manipulation.txt(el, null, m[2] + m[3]);
+            manipulation.txt(el, null, m[3] + m[4]);
           } else {
             Array.from(el.querySelectorAll("a")).forEach((a) => {
               a.addEventListener("click", (e) =>
