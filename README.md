@@ -245,7 +245,7 @@ Note over A,B: Alt
   end
 
 rect rgb(191, 223, 255, 0.4)
-Note over A,B: Parallel & Background Highlighting
+Note over A,B: Parallel and Background Highlighting
     par John to Bob
         J->>B: Hello guys!
     and John to Alice
@@ -305,7 +305,7 @@ Note over A,B: Alt
   end
 
 rect rgb(191, 223, 255, 0.4)
-Note over A,B: Parallel & Background Highlighting
+Note over A,B: Parallel and Background Highlighting
     par John to Bob
         J->>B: Hello guys!
     and John to Alice
