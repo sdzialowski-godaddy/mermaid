@@ -2,7 +2,7 @@
 // @name         GITHUB mermaid
 // @namespace    http://tampermonkey.net/
 // @homepage     https://github.com/stopsopa/mermaid
-// @version      0.1
+// @version      0.2
 // @description  Enhancing mermaid markdown on GITHUB
 // @author       Szymon Dzialowski
 // @include      /(viewscreen\.githubusercontent\.com\/)/
@@ -437,7 +437,7 @@ a.clickable * {
 a.clickable a {
   color: white;
 }
-tspan {
+tspann {
 
   filter: 
     drop-shadow(-1px -1px 0px blue) 
@@ -452,10 +452,11 @@ a.mermaidlink {
   padding-left: 1px;
   margin-left: 2px;
   filter: 
-    drop-shadow(-1px -1px 0px red) 
-    drop-shadow(2px -1px 0px red) 
-    drop-shadow(2px 2px 0px red)
-    drop-shadow(-1px 2px 0px red)
+  drop-shadow(-1px -2px 0px red) 
+  drop-shadow(-1px -1px 0px red)   
+  drop-shadow(-1px 0px 0px red)    
+  drop-shadow(-1px 1px 0px red)    
+  drop-shadow(-1px 2px 0px red);
 }
   `);
       const labelsOnLines = Array.from(document.querySelectorAll("foreignObject .edgeLabel"));
@@ -473,6 +474,12 @@ a.mermaidlink {
       });
 
       Array.from(document.querySelectorAll('text.messageText')).forEach((e) => {
+        if (!labelsOnLines.find((x) => x === e)) {
+          labelsOnLines.push(e);
+        }
+      });
+
+      Array.from(document.querySelectorAll('text.loopText')).forEach((e) => {
         if (!labelsOnLines.find((x) => x === e)) {
           labelsOnLines.push(e);
         }
@@ -519,7 +526,7 @@ a.mermaidlink {
 
             const isIvg = manipulation.isSvgElement(el);
 
-            const permalink = String(m[1]+m[2]);
+            const permalink = String(m[2]);
 
             let a;
             if (isIvg) {
@@ -528,13 +535,13 @@ a.mermaidlink {
               a.setAttributeNS(xlink, "xlink:href", "javascript:void(0)");
               // a.setAttributeNS(xlink, "class", "mermaidlink");
               a.classList.add('mermaidlink')
-              a.appendChild(document.createTextNode(permalink));
+              a.appendChild(document.createTextNode(m[1]+m[2]));
             } else {
               a = document.createElement("a");
               a.setAttribute("href", "javascript:void(0)");
               // a.setAttribute("class", "mermaidlink");
               a.classList.add('mermaidlink')
-              a.innerText = `link: ${isIvg ? "true" : "false"}` + permalink;
+              a.innerText = m[1]+m[2];
             }
 
             manipulation.prepend(el, a);

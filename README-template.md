@@ -125,7 +125,6 @@ sequenceDiagram
     actor A as #35;1 Alice
     participant J as #35;10 John
     participant B as Bob
-    link Alice: Dashboard @ https://dashboard.contoso.com/alice
 Note over A,B: #35;2 Entity codes to escape characters #35;-#35;35#59; #38;-#35;38#59;
 
 A->>J: Hello John, how are you?
@@ -176,6 +175,7 @@ Note over A,B: Parallel #38; Background Highlighting
         J->>A: Hello guys!
     end
 end
+
 ```
 
 ###### #10 header to scroll
