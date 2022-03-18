@@ -5,6 +5,7 @@ Stript was create to improve navigation on the github page rendering mermaid con
 # Installation
 
 Install Tampermonkey
+
 - [chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo/related)
 - [firefox](https://addons.mozilla.org/en-GB/firefox/addon/tampermonkey/)
 
@@ -16,7 +17,7 @@ https://greasyfork.org/en/scripts/441574-github-mermaid
 
 # Features
 
-## * Permalink on the same page
+## \* Permalink on the same page
 
 It is possible to prefix any label on the chart with "hash" and "number" (example "#2").
 
@@ -43,13 +44,13 @@ Example:
 ```
 
 
-## * Coloring links
+## \* Coloring links
 
 By default when [hyperlink](https://mermaid-js.github.io/mermaid/#/flowchart?id=interaction) is defined on the chart it's not really clear that it's a link. It lack styling typical for hyperlinks (blue color), it is only visible that it's a link once one hover over it, mouse cursor will change to state "pointer"
 
 This script changes that to make links visible as regular blue links.
 
-## * Generating links to live editor
+## \* Generating links to live editor
 
 This script also generates special link on each chart which once clicked opens new tab in the browser with this chart in [live editor](https://mermaid-js.github.io/mermaid-live-editor)
 
@@ -134,8 +135,6 @@ C -->|Two| E[fa:fa-car Result 2]
 ```
 
 
-
-
 # advanced
 
 [https://mermaid-js.github.io/](https://mermaid-js.github.io/mermaid-live-editor/edit/#pako:eNqtk02P2jAQhv_KKAjRSiQcqCrVFVQFVt22u6rU7Q04mHhCXBw7sifNrhL-e20SYJF6rE_j8TMffsduotQIjFg0HDZSS2LQwEiZ_QP-QTViMBK4q_ajMYwoxwKDJzMWHY3gCMfhcKP3lpc5_FptNPj1-c36ibil7VuI43nLrTU15MhFC4t1aU2KzsHCPG87fOGpuDUlalBSH1pYNkLywmgBAlPppNFQGqnp2PHLwIfEyug92j5otaZcuu0FSZLkighDhKInf3SMq3Zd2xeDpCLsDsMS0mJKofrDz6t3ebrTroU7X5DTljHmTIGp4s51FGpxbRTSnHtN9T6EwffgMdnJfgh26Midto_XmHlb-8xefNvCffNPDe79BeP25lpfLtLuvLQBeoXOX7NQS8r7gXy9ieoiVjCbzeat1zM99Mm_dSfDYdgjpKYoUFPnTFXgFpBbzGAT5UQlm0zquk60uV2Jj5tsol5_elHowzKpFBtkH7KxI2sOyAbT6bS341oKytm78vk6AN9DZk3BIBRyvlKBtuBSxL9dsvcXq3aJNGfnZDDJlKn9ECx9kmIWivphxDzW_smf-_ejW_neL3O89PT-43-qmzoXn1Kji8ZRD_kf14T8m-j0rzYR86bAjFeKgkpHj1al8E_hTkgyNmIZVw7HEa_IPL3oNGJkKzxDK8n9Oy566vgXzU0_jw)
@@ -193,6 +192,128 @@ graph TD
     classDef someclass fill:#f96;
         %% from: https://mermaid-js.github.io/mermaid/#/flowchart?id=css-classes
 ```
+
+
+## Sequence Diagram
+
+~~~
+```mermaid
+sequenceDiagram
+    autonumber
+    actor A as #35;1 Alice
+    participant J as John
+    participant B as Bob
+    link Alice: Dashboard @ https://dashboard.contoso.com/alice
+A->>J: Hello John, how are you?
+loop Healthcheck
+    J->>J: Fight against hypochondria
+end
+Note right of J: Rational thoughts!
+J-->>A: Great!
+A->>J: #9829;
+J->>B: How about you?
+B-->>J: Jolly good!
+%% this is a comment
+activate J
+activate J
+A->J: Solid line without arrow
+A-->J: Dotted line without arrow
+deactivate J
+A->>J: Solid line with arrowhead
+A-->>J: Dotted line with arrowhead
+deactivate J
+A-xJ: Solid line with a cross at the 
+A--xJ: Dotted line with a cross at the end.
+Note over J,A: A typical interaction
+A-)J: Solid line with an open arrow at the end (async)
+A--)J: Dotted line with a open arrow at the end (async)
+
+Note over A,B: Loops
+  loop Every minute
+      J-->B: Great!
+  end
+
+Note over A,B: Alt
+  alt is sick
+      B->>A: Not so good :(
+  else is well
+      B->>A: Feeling fresh like a daisy
+  end
+
+  opt Extra response
+      B->>A: Thanks for asking
+  end
+
+rect rgb(191, 223, 255, 0.4)
+Note over A,B: Parallel & Background Highlighting
+    par John to Bob
+        J->>B: Hello guys!
+    and John to Alice
+        J->>A: Hello guys!
+    end
+end
+
+```
+~~~
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor A as #35;1 Alice
+    participant J as John
+    participant B as Bob
+    link Alice: Dashboard @ https://dashboard.contoso.com/alice
+A->>J: Hello John, how are you?
+loop Healthcheck
+    J->>J: Fight against hypochondria
+end
+Note right of J: Rational thoughts!
+J-->>A: Great!
+A->>J: #9829;
+J->>B: How about you?
+B-->>J: Jolly good!
+%% this is a comment
+activate J
+activate J
+A->J: Solid line without arrow
+A-->J: Dotted line without arrow
+deactivate J
+A->>J: Solid line with arrowhead
+A-->>J: Dotted line with arrowhead
+deactivate J
+A-xJ: Solid line with a cross at the 
+A--xJ: Dotted line with a cross at the end.
+Note over J,A: A typical interaction
+A-)J: Solid line with an open arrow at the end (async)
+A--)J: Dotted line with a open arrow at the end (async)
+
+Note over A,B: Loops
+  loop Every minute
+      J-->B: Great!
+  end
+
+Note over A,B: Alt
+  alt is sick
+      B->>A: Not so good :(
+  else is well
+      B->>A: Feeling fresh like a daisy
+  end
+
+  opt Extra response
+      B->>A: Thanks for asking
+  end
+
+rect rgb(191, 223, 255, 0.4)
+Note over A,B: Parallel & Background Highlighting
+    par John to Bob
+        J->>B: Hello guys!
+    and John to Alice
+        J->>A: Hello guys!
+    end
+end
+
+```
+
 
 
 ###### #10 header to scroll
