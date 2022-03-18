@@ -253,6 +253,7 @@ Note over A,B: Parallel & Background Highlighting
     end
 end
 
+
 ```
 ~~~
 
@@ -311,6 +312,7 @@ Note over A,B: Parallel & Background Highlighting
         J->>A: Hello guys!
     end
 end
+
 
 ```
 
