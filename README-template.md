@@ -148,7 +148,7 @@ deactivate J
 A-xJ: Solid line with a cross at the
 A--xJ: Dotted line with a cross at the end.
 Note over J,A: A typical interaction
-A-)J: Solid line with an open arrow at the end (async)
+A-)J: #35;222 Solid line with an open arrow at the end (async)
 A--)J: Dotted line with a open arrow at the end (async)
 
 Note over A,B: Loops
