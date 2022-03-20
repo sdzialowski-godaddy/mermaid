@@ -728,8 +728,7 @@ a.mermaidlink {
         .filter(Boolean);
 
       async function highlightBlock(a) {
-
-        location.href = a.getAttribute('href');
+        location.href = a.getAttribute("href");
 
         await delay(50);
 
@@ -785,18 +784,18 @@ a.mermaidlink {
 
           if (allReady) {
             if (hash) {
-              let a = document.querySelector(`[id="${hash}"]:not([role="menuitem"])`);
+              let a = document.querySelector(`[id="${hash}"].anchor`);
 
               if (!a) {
-                a = document.querySelector(`[href="#${hash}"]:not([role="menuitem"])`);
+                a = document.querySelector(`[href="#${hash}"].anchor`);
               }
 
               log("allReady attempt ".repeat(50), hash, a);
 
               if (a) {
-                log("allReady triggered ".repeat(50), hash, 'a: ', a);
+                log("allReady triggered ".repeat(50), hash, "a: ", a);
 
-                window.aa = a
+                window.aa = a;
 
                 highlightBlock(a);
               }
@@ -862,10 +861,9 @@ a.mermaidlink {
             }
 
             if (e.data.liveeditor) {
-
               const found = iframes.find((f) => f.hash === e.data.liveeditor);
 
-              log("parent received a message", iframes, "liveeditor", e.data.liveeditor, 'found', found);
+              log("parent received a message", iframes, "liveeditor", e.data.liveeditor, "found", found);
 
               if (found) {
                 window.open(pako.craeteLink(found.code), "_blank").focus();
